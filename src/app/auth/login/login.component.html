@@ -1,1 +1,30 @@
-<p>login works!</p>
+<section class="login-container">
+  <div class="login-container__content">
+    <h2>LOGIN</h2>
+    <form class="login-container__form">
+      <p>
+        <mat-form-field appearance="outline">
+          <mat-label>Email</mat-label>
+          <input matInput />
+          <mat-icon matIconPrefix>mail</mat-icon>
+        </mat-form-field>
+      </p>
+      <p>
+        <mat-form-field appearance="outline">
+          <mat-label>Password</mat-label>
+          <input type="password" matInput />
+          <mat-icon matIconPrefix>key</mat-icon>
+        </mat-form-field>
+      </p>
+      <button mat-flat-button>LOGIN</button>
+    </form>
+
+    <div class="options">
+      <span>Or login with</span>
+    </div>
+
+    <div class="signup">
+      <p>Not a member? <a routerLink="/auth/register">Sign up now</a></p>
+    </div>
+  </div>
+</section>

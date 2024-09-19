@@ -1,0 +1,15 @@
+.login-container {
+  display: flex;
+  justify-content: center;
+  &__content {
+    text-align: center;
+    width: 400px;
+  }
+
+  &__form {
+    margin-bottom: 20px;
+  }
+
+  &__signup {
+  }
+}
