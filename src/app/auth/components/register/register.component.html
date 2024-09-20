@@ -1,43 +1,45 @@
 <section class="register-container">
   <div class="register-container__content">
     <h2>REGISTER</h2>
-    <form class="register-container__form">
+    <form [formGroup]="regiterForm" class="register-container__form">
       <p>
         <mat-form-field appearance="outline">
           <mat-label>First Name</mat-label>
-          <input matInput />
+          <input formControlName="firstName" matInput />
           <mat-icon matIconPrefix>person</mat-icon>
         </mat-form-field>
       </p>
       <p>
         <mat-form-field appearance="outline">
           <mat-label>Last Name</mat-label>
-          <input matInput />
+          <input formControlName="lastName" matInput />
           <mat-icon matIconPrefix>person</mat-icon>
         </mat-form-field>
       </p>
       <p>
         <mat-form-field appearance="outline">
           <mat-label>CI</mat-label>
-          <input matInput />
+          <input formControlName="ci" matInput />
           <mat-icon matIconPrefix>fingerprint</mat-icon>
         </mat-form-field>
       </p>
       <p>
         <mat-form-field appearance="outline">
           <mat-label>Email</mat-label>
-          <input matInput />
+          <input formControlName="email" matInput />
           <mat-icon matIconPrefix>mail</mat-icon>
         </mat-form-field>
       </p>
       <p>
         <mat-form-field appearance="outline">
           <mat-label>Password</mat-label>
-          <input type="password" matInput />
+          <input formControlName="password" type="password" matInput />
           <mat-icon matIconPrefix>key</mat-icon>
         </mat-form-field>
       </p>
-      <button type="submit" mat-flat-button>REGISTER</button>
+      <button [disabled]="regiterForm.invalid" type="submit" mat-flat-button>
+        REGISTER
+      </button>
     </form>
     <div class="register-container__login">
       <p>Already have an account? <a routerLink="/auth/login">Log In</a></p>
