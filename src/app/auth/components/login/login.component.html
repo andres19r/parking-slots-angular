@@ -1,29 +1,49 @@
 <section class="login-container">
   <div class="login-container__content">
     <h2>LOGIN</h2>
-    <form class="login-container__form">
+    <form
+      (submit)="onSubmit()"
+      [formGroup]="loginForm"
+      class="login-container__form"
+    >
       <p>
         <mat-form-field appearance="outline">
           <mat-label>Email</mat-label>
-          <input matInput />
+          <input formControlName="email" matInput />
           <mat-icon matIconPrefix>mail</mat-icon>
         </mat-form-field>
       </p>
       <p>
         <mat-form-field appearance="outline">
           <mat-label>Password</mat-label>
-          <input type="password" matInput />
+          <input formControlName="password" type="password" matInput />
           <mat-icon matIconPrefix>key</mat-icon>
         </mat-form-field>
       </p>
-      <button mat-flat-button>LOGIN</button>
+      <button type="submit" [disabled]="loginForm.invalid" mat-flat-button>
+        LOGIN
+      </button>
     </form>
 
     <div class="options">
-      <span>Or login with</span>
+      <span>Or...</span>
+      <p>
+        <button mat-stroked-button (click)="loginWithGoogle()">
+          Continue with Google
+        </button>
+      </p>
+      <p>
+        <button mat-stroked-button (click)="loginWithFacebook()">
+          Continue with Facebook
+        </button>
+      </p>
+      <p>
+        <button mat-stroked-button (click)="loginWithX()">
+          Continue with X
+        </button>
+      </p>
     </div>
-
-    <div class="signup">
+    <div class="login-container__signup">
       <p>Not a member? <a routerLink="/auth/register">Sign up now</a></p>
     </div>
   </div>
