@@ -10,13 +10,13 @@ export class FirestoreService {
   constructor(private firestore: AngularFirestore) {}
 
   createUser(newUser: User) {
-    const { firstName, lastName, ci, email, password } = newUser;
+    const { firstName, lastName, ci, email, role } = newUser;
     return this.firestore.collection('users').add({
       firstName,
       lastName,
       ci,
       email,
-      password,
+      role,
     });
   }
 }

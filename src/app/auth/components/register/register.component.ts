@@ -2,7 +2,7 @@ import { Component, inject } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { FirestoreService } from '../../../services/firestore.service';
-import { User } from '../../../models/user';
+import { User, UserRole } from '../../../models/user';
 import { AuthfireService } from '../../../services/authfire.service';
 
 @Component({
@@ -29,7 +29,7 @@ export class RegisterComponent {
     if (this.regiterForm.invalid) return;
 
     const { firstName, lastName, ci, email, password } = this.regiterForm.value;
-    const newUser = new User(firstName!, lastName!, ci!, email!);
+    const newUser = new User(firstName!, lastName!, ci!, email!, UserRole.USER);
     this.firestoreService
       .createUser(newUser)
       .then((user) => {
