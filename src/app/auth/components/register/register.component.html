@@ -1,7 +1,11 @@
 <section class="register-container">
   <div class="register-container__content">
     <h2>REGISTER</h2>
-    <form [formGroup]="regiterForm" class="register-container__form">
+    <form
+      (submit)="onSubmit()"
+      [formGroup]="regiterForm"
+      class="register-container__form"
+    >
       <p>
         <mat-form-field appearance="outline">
           <mat-label>First Name</mat-label>
@@ -33,7 +37,7 @@
       <p>
         <mat-form-field appearance="outline">
           <mat-label>Password</mat-label>
-          <input formControlName="password" type="password" matInput />
+          <input formControlName="password" matInput />
           <mat-icon matIconPrefix>key</mat-icon>
         </mat-form-field>
       </p>
