@@ -29,7 +29,7 @@ export class RegisterComponent {
     if (this.regiterForm.invalid) return;
 
     const { firstName, lastName, ci, email, password } = this.regiterForm.value;
-    const newUser = new User(firstName!, lastName!, ci!, email!, password!);
+    const newUser = new User(firstName!, lastName!, ci!, email!);
     this.firestoreService
       .createUser(newUser)
       .then((user) => {
