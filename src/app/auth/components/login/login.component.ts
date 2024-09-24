@@ -14,8 +14,8 @@ export class LoginComponent {
   private router = inject(Router);
 
   loginForm = this.formBuilder.group({
-    email: ['', [Validators.required, Validators.email]],
-    password: ['', Validators.required],
+    email: ['andres@email.com', [Validators.required, Validators.email]],
+    password: ['testing', Validators.required],
   });
 
   constructor() {}
@@ -26,9 +26,14 @@ export class LoginComponent {
     const { email, password } = this.loginForm.value;
     this.authFire
       .login(email!, password!)
-      .then((credentials) => {
-        console.log(credentials);
-        this.router.navigateByUrl('/parking');
+      .then((doc) => {
+        doc.subscribe((userInfo) => {
+          const user: any = userInfo.data();
+          if (user.role === 'admin') {
+            return this.router.navigateByUrl('/admin');
+          }
+          return this.router.navigateByUrl('/parking');
+        });
       })
       .catch((err) => {
         console.error(err);
