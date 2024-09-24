@@ -1,8 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { FirestoreService } from '../../../services/firestore.service';
-import { User, UserRole } from '../../../models/user';
+import { UserRole } from '../../../models/user';
 import { AuthfireService } from '../../../services/authfire.service';
 
 @Component({
@@ -12,7 +11,6 @@ import { AuthfireService } from '../../../services/authfire.service';
 })
 export class RegisterComponent {
   private formBuilder = inject(FormBuilder);
-  private firestoreService = inject(FirestoreService);
   private router = inject(Router);
   private authFire = inject(AuthfireService);
 
