@@ -17,11 +17,25 @@ export class AuthfireService {
     private firestore: AngularFirestore,
   ) {}
 
-  register(email: string, password: string, firstName: string, lastName: string, ci: number, role: UserRole) {
+  register(
+    email: string,
+    password: string,
+    firstName: string,
+    lastName: string,
+    ci: number,
+    role: UserRole,
+  ) {
     return this.afAuth
       .createUserWithEmailAndPassword(email, password)
       .then(({ user }) => {
-        const newUser = new User(user!.uid, firstName, lastName, ci, email, role);
+        const newUser = new User(
+          user!.uid,
+          firstName,
+          lastName,
+          ci,
+          email,
+          role,
+        );
         return this.firestore.doc(`users/${user!.uid}`).set({ ...newUser });
       });
   }

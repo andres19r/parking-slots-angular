@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../../../services/user.service';
 import { User } from '../../../models/user';
+import { Observable, of } from 'rxjs';
 
 @Component({
   selector: 'app-admin',
@@ -8,7 +9,7 @@ import { User } from '../../../models/user';
   styleUrl: './admin.component.scss',
 })
 export class AdminComponent implements OnInit {
-  dataSource: User[] = [];
+  dataSource$: Observable<User[]> = of([]);
   displayedColumns: string[] = [
     'firstName',
     'lastName',
@@ -21,8 +22,13 @@ export class AdminComponent implements OnInit {
   constructor(private userService: UserService) {}
 
   ngOnInit(): void {
-    this.userService.initUsersListener().subscribe((users) => {
-      this.dataSource = users as User[];
-    });
+    this.dataSource$ = this.userService.getAllUsers();
+  }
+
+  deleteUser(id: string) {
+    this.userService
+      .delete(id)
+      .then((resp) => console.log(resp))
+      .catch((err) => console.error(err));
   }
 }
