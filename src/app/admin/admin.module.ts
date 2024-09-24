@@ -1,15 +1,10 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { UsersTableComponent } from './pages/users-table/users-table.component';
-
-
+import { MaterialModule } from '../material/material.module';
+import { AdminComponent } from './components/admin/admin.component';
 
 @NgModule({
-  declarations: [
-    UsersTableComponent
-  ],
-  imports: [
-    CommonModule
-  ]
+  declarations: [AdminComponent],
+  imports: [CommonModule, MaterialModule],
 })
-export class AdminModule { }
+export class AdminModule {}
