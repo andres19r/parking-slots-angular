@@ -17,11 +17,11 @@ export class RegisterComponent {
   private authFire = inject(AuthfireService);
 
   regiterForm = this.formBuilder.group({
-    firstName: ['name', Validators.required],
-    lastName: ['last', Validators.required],
-    ci: [12345, Validators.required],
-    email: ['user@email.com', [Validators.required, Validators.email]],
-    password: ['123456', Validators.required],
+    firstName: ['', Validators.required],
+    lastName: ['', Validators.required],
+    ci: [undefined, Validators.required],
+    email: ['', [Validators.required, Validators.email]],
+    password: ['', Validators.required],
   });
   constructor() {}
 
@@ -29,18 +29,13 @@ export class RegisterComponent {
     if (this.regiterForm.invalid) return;
 
     const { firstName, lastName, ci, email, password } = this.regiterForm.value;
-    const newUser = new User(firstName!, lastName!, ci!, email!, UserRole.USER);
-    this.firestoreService
-      .createUser(newUser)
-      .then((user) => {
-        console.log(user);
-        return this.authFire.register(email!, password!);
-      })
+    this.authFire.register(email!, password!, firstName!, lastName!, ci!, UserRole.USER)
       .then(() => {
-        this.router.navigateByUrl('/parking');
+        this.router.navigateByUrl('/auth/login');
       })
       .catch((err) => {
         console.error(err);
       });
+
   }
 }
