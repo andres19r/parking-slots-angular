@@ -1,0 +1,49 @@
+.car-icon-occupied {
+  color: #ff3f50;
+}
+
+.car-icon-available {
+  color: #7cd65d;
+}
+
+.car-icon-not-available {
+  color: gray;
+}
+
+.parking-info {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 10px;
+  gap: 10px;
+  p {
+    display: flex;
+    align-items: flex-end;
+  }
+}
+
+.parking {
+  display: grid;
+  width: 600px;
+  line-height: 40px;
+  text-align: center;
+  grid-template-rows: repeat(2, 1fr);
+  grid-template-columns: repeat(5, 1fr);
+  gap: 10px;
+  margin: 0 auto;
+  &__slot {
+    border-radius: 5px;
+    width: 100px;
+    height: 140px;
+    background-color: #89949e;
+  }
+
+  .available {
+    background-color: #7cd65d;
+    color: #fff;
+  }
+
+  .occupied {
+    background-color: #ff3f50;
+    color: #fff;
+  }
+}

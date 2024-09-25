@@ -9,6 +9,7 @@ import { environment } from '../environments/environment';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { AuthModule } from './auth/auth.module';
 import { AdminModule } from './admin/admin.module';
+import { ParkingModule } from './parking/parking.module';
 
 @NgModule({
   declarations: [AppComponent],
@@ -16,6 +17,7 @@ import { AdminModule } from './admin/admin.module';
     BrowserModule,
     AuthModule,
     AdminModule,
+    ParkingModule,
     AppRoutingModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFireAuthModule,
