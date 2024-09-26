@@ -17,4 +17,8 @@ export class TopBarComponent {
     this.authFire.logout();
     this.router.navigateByUrl('/auth/login')
   }
+
+  goTo(route: string) {
+    this.router.navigateByUrl(route)
+  }
 }

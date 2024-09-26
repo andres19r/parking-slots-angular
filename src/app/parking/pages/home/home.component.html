@@ -1,3 +1,4 @@
+<app-top-bar></app-top-bar>
 <h1>Car Parking Panel</h1>
 
 <div class="parking-info">
@@ -22,7 +23,7 @@
   @for (slot of parkingSlots | keyvalue; let idx = $index; track slot) {
     <div
       class="parking__slot"
-      [ngClass]="{ available: slot.value === 0, occupied: slot.value === 1}"
+      [ngClass]="{ occupied: slot.value === 0, available: slot.value === 1}"
     >
     P {{idx + 1}}
     </div>

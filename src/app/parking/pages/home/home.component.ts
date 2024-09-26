@@ -2,8 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ParkingService } from '../../../services/parking.service';
 
 interface ParkingSlot {
-  position: number;
-  available: boolean;
+  infrarojo: number[]
 }
 
 @Component({
