@@ -7,11 +7,19 @@ import {
 } from '@firebase/auth';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { User, UserRole } from '../models/user';
+import { map, Subscription } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthfireService {
+  userSubscription$?: Subscription;
+  private _user: User | null = null;
+
+  get user() {
+    return { ...this._user };
+  }
+
   constructor(
     private readonly afAuth: AngularFireAuth,
     private firestore: AngularFirestore,
@@ -51,6 +59,10 @@ export class AuthfireService {
 
   logout() {
     return this.afAuth.signOut();
+  }
+
+  isAuth() {
+    return this.afAuth.authState.pipe(map(fUser => fUser != null))
   }
 
   loginWithGoogle() {
