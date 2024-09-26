@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { AngularFireDatabase } from '@angular/fire/compat/database';
-import { ref, set, onValue } from 'firebase/database';
-import { map } from 'rxjs';
+import { ref, onValue } from 'firebase/database';
 
 @Injectable({
   providedIn: 'root'
@@ -12,11 +11,11 @@ export class ParkingService {
   constructor(private db: AngularFireDatabase) { }
 
   getParkingSlots() {
-    return this.db.object('parking').valueChanges();
+    return this.db.object('sensores').valueChanges();
   }
 
   updateSlotAvailability(slotId: string, isAvailable: boolean) {
-    return this.db.object(`parking/${slotId}`).set(isAvailable ? 0 : 1);
+    return this.db.object(`sensores/${slotId}`).set(isAvailable ? 0 : 1);
   }
 
    getParkingState(callback: (state: number) => void) {
