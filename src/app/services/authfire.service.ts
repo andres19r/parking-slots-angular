@@ -25,6 +25,23 @@ export class AuthfireService {
     private firestore: AngularFirestore,
   ) {}
 
+  initAuthListener() {
+    this.afAuth.authState.subscribe((fbUser) => {
+      if (fbUser) {
+        this.userSubscription$ = this.firestore
+          .doc(`users/${fbUser.uid}`)
+          .valueChanges()
+          .subscribe((firestoreUser: any) => {
+            const user = User.fromFirebase(firestoreUser);
+            this._user = user;
+          });
+      } else {
+        this._user = null;
+        this.userSubscription$?.unsubscribe();
+      }
+    });
+  }
+
   register(
     email: string,
     password: string,
@@ -62,7 +79,7 @@ export class AuthfireService {
   }
 
   isAuth() {
-    return this.afAuth.authState.pipe(map(fUser => fUser != null))
+    return this.afAuth.authState.pipe(map((fUser) => fUser != null));
   }
 
   loginWithGoogle() {
