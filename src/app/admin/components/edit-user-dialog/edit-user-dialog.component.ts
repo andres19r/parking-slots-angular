@@ -35,7 +35,10 @@ export class EditUserDialogComponent implements OnInit {
     });
   }
 
-  onSubmit() {
+  async onSubmit() {
     if (this.editUserForm.invalid) return;
+
+    this.dialogRef.close('edited');
+    await this.userService.update(this.userData.id, this.editUserForm.value);
   }
 }

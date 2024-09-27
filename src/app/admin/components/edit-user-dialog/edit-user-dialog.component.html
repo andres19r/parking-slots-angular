@@ -1,7 +1,11 @@
 <section class="edit-container">
   <div class="edit-container__content">
     <h2>Edit User</h2>
-    <form class="edit-container__form" [formGroup]="editUserForm">
+    <form
+      (submit)="onSubmit()"
+      class="edit-container__form"
+      [formGroup]="editUserForm"
+    >
       <p>
         <mat-form-field appearance="outline">
           <mat-label>First Name</mat-label>

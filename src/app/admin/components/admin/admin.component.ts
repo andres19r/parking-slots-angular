@@ -4,6 +4,8 @@ import { User } from '../../../models/user';
 import { Observable, of } from 'rxjs';
 import { MatDialog } from '@angular/material/dialog';
 import { EditUserDialogComponent } from '../edit-user-dialog/edit-user-dialog.component';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { SnackBarComponent } from '../../../shared/snack-bar/snack-bar.component';
 
 @Component({
   selector: 'app-admin',
@@ -17,6 +19,7 @@ export class AdminComponent implements OnInit {
   constructor(
     private userService: UserService,
     private dialog: MatDialog,
+    private snackBar: MatSnackBar,
   ) {}
 
   ngOnInit(): void {
@@ -31,8 +34,19 @@ export class AdminComponent implements OnInit {
   }
 
   openEditDialog(user: User): void {
-    this.dialog.open(EditUserDialogComponent, {
+    const dialogRef = this.dialog.open(EditUserDialogComponent, {
       data: { user },
+    });
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result === 'edited')
+        this.snackBar.openFromComponent(SnackBarComponent, {
+          duration: 3000,
+          data: {
+            message: 'Usuario Editado',
+            icon: 'check',
+            iconColor: 'green',
+          },
+        });
     });
   }
 }
