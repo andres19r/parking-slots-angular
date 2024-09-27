@@ -1,0 +1,57 @@
+<section class="edit-container">
+  <div class="edit-container__content">
+    <h2>Edit User</h2>
+    <form class="edit-container__form" [formGroup]="editUserForm">
+      <p>
+        <mat-form-field appearance="outline">
+          <mat-label>First Name</mat-label>
+          <input formControlName="firstName" matInput />
+          <mat-icon matIconPrefix>person</mat-icon>
+        </mat-form-field>
+      </p>
+      <p>
+        <mat-form-field appearance="outline">
+          <mat-label>Last Name</mat-label>
+          <input formControlName="lastName" matInput />
+          <mat-icon matIconPrefix>person</mat-icon>
+        </mat-form-field>
+      </p>
+      <p>
+        <mat-form-field appearance="outline">
+          <mat-label>CI</mat-label>
+          <input formControlName="ci" matInput />
+          <mat-icon matIconPrefix>fingerprint</mat-icon>
+        </mat-form-field>
+      </p>
+      <p>
+        <mat-form-field appearance="outline">
+          <mat-label>Email</mat-label>
+          <input formControlName="email" matInput />
+          <mat-icon matIconPrefix>mail</mat-icon>
+        </mat-form-field>
+      </p>
+      <p>
+        <mat-form-field appearance="outline">
+          <mat-label>Role</mat-label>
+          <mat-select formControlName="role">
+            <mat-option value="admin">admin</mat-option>
+            <mat-option value="user">user</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </p>
+      <div class="edit-container__buttons">
+        <button
+          (click)="dialogRef.close()"
+          type="submit"
+          color="warn"
+          mat-flat-button
+        >
+          Cancel
+        </button>
+        <button [disabled]="editUserForm.invalid" type="submit" mat-flat-button>
+          Confirm
+        </button>
+      </div>
+    </form>
+  </div>
+</section>

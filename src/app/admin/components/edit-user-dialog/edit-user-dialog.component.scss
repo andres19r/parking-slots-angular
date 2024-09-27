@@ -1,0 +1,32 @@
+.edit-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  &__content {
+    text-align: center;
+    width: 400px;
+    height: fit-content;
+    border-radius: 10px;
+    box-shadow:
+      rgba(0, 0, 0, 0.25) 0px 54px 55px,
+      rgba(0, 0, 0, 0.12) 0px -12px 30px,
+      rgba(0, 0, 0, 0.12) 0px 4px 6px,
+      rgba(0, 0, 0, 0.17) 0px 12px 13px,
+      rgba(0, 0, 0, 0.09) 0px -3px 5px;
+  }
+
+  &__buttons {
+    display: flex;
+    justify-content: space-around;
+    margin: 0 auto;
+    width: 60%;
+  }
+
+  &__form {
+    margin-bottom: 20px;
+    mat-form-field {
+      width: 240px;
+    }
+  }
+}

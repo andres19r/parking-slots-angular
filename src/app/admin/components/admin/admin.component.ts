@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { UserService } from '../../../services/user.service';
 import { User } from '../../../models/user';
 import { Observable, of } from 'rxjs';
+import { MatDialog } from '@angular/material/dialog';
+import { EditUserDialogComponent } from '../edit-user-dialog/edit-user-dialog.component';
 
 @Component({
   selector: 'app-admin',
@@ -10,16 +12,12 @@ import { Observable, of } from 'rxjs';
 })
 export class AdminComponent implements OnInit {
   dataSource$: Observable<User[]> = of([]);
-  displayedColumns: string[] = [
-    'firstName',
-    'lastName',
-    'email',
-    'ci',
-    'role',
-    'actions',
-  ];
+  displayedColumns: string[] = ['fullName', 'email', 'ci', 'role', 'actions'];
 
-  constructor(private userService: UserService) {}
+  constructor(
+    private userService: UserService,
+    private dialog: MatDialog,
+  ) {}
 
   ngOnInit(): void {
     this.dataSource$ = this.userService.getAllUsers();
@@ -30,5 +28,11 @@ export class AdminComponent implements OnInit {
       .delete(id)
       .then((resp) => console.log(resp))
       .catch((err) => console.error(err));
+  }
+
+  openEditDialog(user: User): void {
+    this.dialog.open(EditUserDialogComponent, {
+      data: { user },
+    });
   }
 }
