@@ -2,6 +2,7 @@ import { Component, inject } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { AuthfireService } from '../../../services/authfire.service';
 import { Router } from '@angular/router';
+import { SnackBarService } from '../../../services/snack-bar.service';
 
 @Component({
   selector: 'app-login',
@@ -12,6 +13,7 @@ export class LoginComponent {
   private formBuilder = inject(FormBuilder);
   private authFire = inject(AuthfireService);
   private router = inject(Router);
+  private snackBarService = inject(SnackBarService);
 
   loginForm = this.formBuilder.group({
     email: ['', [Validators.required, Validators.email]],
@@ -36,7 +38,11 @@ export class LoginComponent {
         });
       })
       .catch((err) => {
-        console.error(err);
+        this.snackBarService.openSnackBar(
+          'Fallo al iniciar sesión',
+          'error',
+          'red',
+        );
       });
   }
 
@@ -48,7 +54,11 @@ export class LoginComponent {
         this.router.navigateByUrl('/parking');
       })
       .catch((err) => {
-        console.error(err);
+        this.snackBarService.openSnackBar(
+          'Fallo al iniciar sesión',
+          'error',
+          'red',
+        );
       });
   }
 
