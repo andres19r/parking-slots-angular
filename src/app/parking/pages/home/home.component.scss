@@ -1,3 +1,32 @@
+h1 {
+  font-size: 30px;
+  text-align: center;
+}
+.parking-container {
+  display: grid;
+  gap: 30px;
+  margin: 0 auto;
+  grid-template-areas:
+    "main"
+    "header";
+  &__header {
+    grid-area: header;
+    justify-self: center;
+    img {
+      width: 200px;
+      height: auto;
+    }
+  }
+
+  &__main {
+    grid-area: main;
+    display: flex;
+    justify-self: center;
+    flex-direction: column;
+    justify-content: center;
+  }
+}
+
 .car-icon-occupied {
   color: #ff3f50;
 }
@@ -22,17 +51,15 @@
 }
 
 .parking {
-  display: grid;
-  width: 600px;
+  display: flex;
+  justify-content: center;
   line-height: 40px;
   text-align: center;
-  grid-template-rows: repeat(2, 1fr);
-  grid-template-columns: repeat(4, 1fr);
   gap: 10px;
   margin: 0 auto;
   &__slot {
     border-radius: 5px;
-    width: 100px;
+    width: 50px;
     height: 140px;
     background-color: #89949e;
   }
@@ -45,5 +72,23 @@
   .occupied {
     background-color: #ff3f50;
     color: #fff;
+  }
+}
+
+@media (min-width: 500px) {
+  .parking {
+    &__slot {
+      width: 100px;
+    }
+  }
+}
+
+@media (min-width: 1200px) {
+  .parking-container {
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas: "header main";
+    img {
+      width: 300px;
+    }
   }
 }
