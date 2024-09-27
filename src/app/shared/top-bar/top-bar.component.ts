@@ -13,12 +13,15 @@ export class TopBarComponent {
     private router: Router,
   ) {}
 
+  get user() {
+    return this.authFire.user;
+  }
+
   logout() {
-    this.authFire.logout();
-    this.router.navigateByUrl('/auth/login')
+    this.authFire.logout().then(() => this.router.navigateByUrl('/auth/login'));
   }
 
   goTo(route: string) {
-    this.router.navigateByUrl(route)
+    this.router.navigateByUrl(route);
   }
 }
